@@ -2,7 +2,7 @@
 // import "./App.css";
 import { useState } from "react";
 //import React from "react"
-import { FilmsList } from "./Components/filmsList";
+import {FilmsList} from "./Components/filmsList";
 
 function App(props) {
   const [list, setList] = useState(["ready", "set", "GO"]);
@@ -57,4 +57,4 @@ function App(props) {
 // //     </div>
 // //   ); */}
 
-export default App();
+export default App;
