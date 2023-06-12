@@ -1,45 +1,38 @@
-import { Component } from "react";
+import { useState, useEffect } from "react";
 
-export default class FilmsList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      list: [],
-    };
-  }
+export function FilmsList(props) {
+  const [list, setList] = useState([]);
 
-  getFilms() {
-    fetch(`https://studioghibliapi-d6fc8.web.app/films`)
-      .then((response) => {
-        let dataObj = response.json();
-        return dataObj;
+  function getFilms() {
+    fetch("https://studioghibliapi-d6fc8.web.app/films")
+      .then((response)=>{
+          return response.json();
+        
       })
-      .then((data) => {
-        console.log(data[0].title);
+      .then((data)=>{
+        //console.log(data[0].title);
         let newArr = [];
         for (let i = 0; i < data.length; i++) {
           newArr.push(data[i].title);
         }
-        this.setState({ list: newArr });
+        setList(newArr);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.message);
       });
   }
 
-  componentDidMount() {
-    this.getFilms();
-  }
+  useEffect(() => {
+    getFilms();
+  }, []);
 
-  render() {
-    return (
-      <div>
-        <ul>
-          {this.state.list.map((type, index) => {
-            return <li key={index + type}>{type}</li>;
-          })}
-        </ul>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <ul>
+        {list.map((film, index) => {
+          return <li key={index + film}>{film}</li>;
+        })}
+      </ul>
+    </div>
+  );
 }
