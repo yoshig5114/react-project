@@ -3,32 +3,72 @@
 import { useState } from "react";
 //import React from "react"
 import {FilmsList} from "./Components/filmsList";
+import { BrowserRouter, Route, Routes, NavLink } from "react-router-dom";
+import { HomePage, FilmsPage } from "./pages/index.js";
 
-function App(props) {
-  const [list, setList] = useState(["ready", "set", "GO"]);
-  const [text, setText] = useState("");
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    setList([...list, text]);
-  }
-
+function App() {
   return (
-    <div>
-      <h1>Hello World</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={text} onChange={(e) => setText(e.target.value)} />
-        <button type="submit">Add</button>
-      </form>
-      <ul>
-        {list.map((string, index) => {
-          return <li key={index + string}>{string}</li>;
-        })}
-      </ul>
-      <FilmsList />
-    </div>
+    <BrowserRouter>
+      <div>
+        <ul>
+          <li><NavLink to="/">Home</NavLink></li>
+          <li><NavLink to="/films">Films</NavLink></li>
+        </ul>        
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/films" element={<FilmsPage />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// (props) {
+//   const [list, setList] = useState(["ready", "set", "GO"]);
+//   const [text, setText] = useState("");
+
+//   function handleSubmit(event) {
+//     event.preventDefault();
+//     setList([...list, text]);
+//   }
+
+//   return (
+//     <div>
+//       <h1>Hello World</h1>
+//       <form onSubmit={handleSubmit}>
+//         <input type="text" value={text} onChange={(e) => setText(e.target.value)} />
+//         <button type="submit">Add</button>
+//       </form>
+//       <ul>
+//         {list.map((string, index) => {
+//           return <li key={index + string}>{string}</li>;
+//         })}
+//       </ul>
+//       <FilmsList />
+//     </div>
+//   );
+// }
 
 // {/* //
 // //   return (
