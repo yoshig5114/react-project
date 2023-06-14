@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+
 
 export function FilmsPage(props) {
   const [list, setList] = useState([]);
   const [searchDirector, setSearchDirector] = useState("");
+
   function getFilms() {
     fetch("https://studioghibliapi-d6fc8.web.app/films")
       .then((response)=>{
@@ -27,21 +28,30 @@ export function FilmsPage(props) {
     getFilms();
   }, []);
 
+  let filterFilmsByDirector = filterFilmsByDirector(list, searchDirector);
+  let directors = getListOf(list, "director");
+
   return (
     <div>
         <h1>Studio Ghibli Films</h1>
-        <form action="">
-            <div className="form-group">
-                <label>
-                    <select name="" id="" value={searchDirector} 
+        <form>
+                <label htmlFor="searchDirector">Filter By Director</label>
+                    <select
+                       name="searchDirector" id="searchDirector" value={searchDirector} 
                        onChange={(e) => setSearchDirector(e.target.value)}
-                       option value="">All</select>
-                </label>
-            </div>
+                       >
+                           <option value="">All</option>
+                           {directors.map((director, index) => {
+                               return(
+                                <option key={index + director} value={director}>
+                                {director}
+                                </option>
+                           )})}
+                       </select>
         </form>
       <ul>
-        {list.map((film, index) => {
-          return <li key={index + film}>{film}</li>;
+        {filmsByDirector.map((film) => {
+          return <li key={film.id}>{film.title}</li>;
         })}
       </ul>
     </div>
