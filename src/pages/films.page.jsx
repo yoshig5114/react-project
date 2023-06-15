@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import { filterFilmsByDirector, getListOf } from "../helpers/films.helpers";
 
 export function FilmsPage(props) {
   const [list, setList] = useState([]);
@@ -13,11 +13,8 @@ export function FilmsPage(props) {
       })
       .then((data)=>{
         //console.log(data[0].title);
-        let newArr = [];
-        for (let i = 0; i < data.length; i++) {
-          newArr.push(data[i].title);
-        }
-        setList(newArr);
+        
+        setList(data);
       })
       .catch((err) => {
         console.log(err.message);
@@ -28,7 +25,7 @@ export function FilmsPage(props) {
     getFilms();
   }, []);
 
-  let filterFilmsByDirector = filterFilmsByDirector(list, searchDirector);
+  let filmsByDirector = filterFilmsByDirector(list, searchDirector);
   let directors = getListOf(list, "director");
 
   return (
@@ -43,7 +40,7 @@ export function FilmsPage(props) {
                            <option value="">All</option>
                            {directors.map((director, index) => {
                                return(
-                                <option key={index + director} value={director}>
+                                <option key={director + index} value={director}>
                                 {director}
                                 </option>
                            )})}

@@ -2,7 +2,7 @@
 // import "./App.css";
 import { useState } from "react";
 //import React from "react"
-import {FilmsList} from "./Components/filmsList";
+// import { FilmsList } from "./Components/filmsList.jsx";
 
 function HomePage(props) {
   const [list, setList] = useState(["ready", "set", "GO"]);
