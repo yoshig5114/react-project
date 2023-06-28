@@ -2,9 +2,9 @@
 // import "./App.css";
 import { useState } from "react";
 //import React from "react"
-import {FilmsList} from "./Components/filmsList";
+import { FilmsList } from "./Components/filmsList";
 import { BrowserRouter, Route, Routes, NavLink } from "react-router-dom";
-import { HomePage, FilmsPage } from "./pages/index.js";
+import { HomePage, FilmsPage, SingleFilmPage } from "./pages/index.js";
 
 function App() {
   return (
@@ -17,30 +17,12 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/films" element={<FilmsPage />} />
+          <Route path="/films/:id" element={<SingleFilmPage />} />
         </Routes>
       </div>
     </BrowserRouter>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
