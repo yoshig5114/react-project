@@ -1,25 +1,26 @@
 // import logo from './logo.svg';
-// import "./App.css";
-import { useState } from "react";
+import "./App.css";
+//import { useState } from "react";
 //import React from "react"
-import { FilmsList } from "./Components/filmsList";
+//import { FilmsList } from "./Components/filmsList";
 import { BrowserRouter, Route, Routes, NavLink } from "react-router-dom";
 import { HomePage, FilmsPage, SingleFilmPage } from "./pages/index.js";
 
-function App() {
+function App(props) {
   return (
     <BrowserRouter>
-      <div>
+      <nav>
         <ul>
           <li><NavLink to="/">Home</NavLink></li>
           <li><NavLink to="/films">Films</NavLink></li>
-        </ul>        
+        </ul>  
+      </nav>      
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/films" element={<FilmsPage />} />
-          <Route path="/films/:id" element={<SingleFilmPage />} />
+          <Route path="films" element={<FilmsPage />} />
+          <Route path="/films/film/:id" element={<SingleFilmPage />} />
         </Routes>
-      </div>
+      
     </BrowserRouter>
   );
 }

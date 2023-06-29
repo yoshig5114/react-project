@@ -3,10 +3,10 @@ import {
   filterFilmsByDirector,
   getListOf,
   getFilmStats,
-} from "../helpers/films.helpers";
+} from "../helpers/film.helpers";
 import { Link } from "react-router-dom";
 
-export function FilmsPage(props) {
+export default function FilmsPage(props) {
   const [list, setList] = useState([]);
   const [searchDirector, setSearchDirector] = useState("");
 
@@ -17,7 +17,6 @@ export function FilmsPage(props) {
       })
       .then((data) => {
         //console.log(data[0].title);
-
         setList(data);
       })
       .catch((err) => {
@@ -72,7 +71,7 @@ export function FilmsPage(props) {
         {filmsByDirector.map((film) => {
           return (
             <li key={film.id}>
-              <Link to={`/films/${film.id}`}>{film.title}</Link>
+              <Link to={`/films/film/${film.id}`}>{film.title}</Link>
               {film.title}
             </li>
           );
